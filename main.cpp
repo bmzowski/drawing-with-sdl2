@@ -65,16 +65,37 @@ int main(void) {
       window, -1, SDL_RENDERER_SOFTWARE
     );
 
-    SDL_SetRenderDrawColor( renderer, 255, 255, 255, 255 );
+    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255 );
     SDL_RenderClear(renderer);
-    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+    //SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
 
+    //legs
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    SDL_Rect leg1 = {300, 280, 10, 80};
+    SDL_Rect leg2 = {330, 280, 10, 80};
+    SDL_RenderFillRect(renderer, &leg1);
+    SDL_RenderFillRect(renderer, &leg2);
+    SDL_RenderDrawRect(renderer, &leg1);
+    SDL_RenderDrawRect(renderer, &leg2);
+
+    //body
     SDL_Point center = {320, 240};
-    SDL_Color color = {255,0,0,255};
+    SDL_Color color = {255,193,203,255};
     drawCircle(renderer, center, 50, color);
 
+    //neck
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    SDL_Rect neck = {280, 130, 10, 80};
+    SDL_RenderFillRect(renderer, &neck);
+    SDL_RenderDrawRect(renderer, &neck);
+
+    //head
+    SDL_Point centerHead = {280, 130};
+    SDL_Color colorHead = {255,193,203,255};
+    drawCircle(renderer, centerHead, 25, colorHead);
+
     writeName(renderer);
-    SDL_RenderPresent(renderer);
+    SDL_RenderPresent(renderer); //make all changes above here?
     FrameGenerator frameGen(renderer, window, WIDTH, HEIGHT, NAME);
     frameGen.makeFrame();
 
